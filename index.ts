@@ -60,14 +60,14 @@ const getNotificationMessage = (
     case NotificationType.release:
       message = `🚀 <b>Release Notification</b>:\n`;
       message += isSuccess
-        ? "✅ The release was successful!\n\n"
-        : "❌ The release failed. Please check the logs.\n\n";
+        ? "✅ The release was successful!\n"
+        : "❌ The release failed. Please check the logs.\n";
       break;
     case NotificationType.integrationtest:
       message = `<b>🛠️️ Integration Test Notification:\n<b>`;
       message += isSuccess
-        ? "✅ All integration tests passed successfully!\n\n"
-        : "❌ Some integration tests failed. Please investigate.\n\n";
+        ? "✅ All integration tests passed successfully!\n"
+        : "❌ Some integration tests failed. Please investigate.\n";
       break;
   }
 
