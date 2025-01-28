@@ -72,3 +72,5 @@ const getNotificationMessage = (notificationType, isSuccess) => {
 
   return message;
 };
+
+sendTelegramNotification();

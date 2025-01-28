@@ -19,6 +19,10 @@ jobs:
         id: start_step
         run: pm2 start 0
 
+      - name: Transpile typescript to javascript
+        run: |
+          npx tsc index.ts --outDir dist
+
       - name: Notify telegram group on failure integration test
         run: |
-          node index.js release ${{ steps.start_step.outcome }}
+          node dist/index.js release ${{ steps.start_step.outcome }}
