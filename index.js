@@ -3,7 +3,7 @@ const NotificationType = {
   integrationtest: "integration-test",
 };
 
-export const sendTelegramNotification = async () => {
+const sendTelegramNotification = async () => {
   const notificationType = process.argv[2];
   const isSuccess = process.argv[3] === "success";
 
