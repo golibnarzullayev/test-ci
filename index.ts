@@ -71,7 +71,7 @@ const getNotificationMessage = (
       break;
   }
 
-  message += `<i>Timestamp: ${currentDate}</i>`;
+  message += `<b>Enviroment:</b> Backend\n\n<i>Timestamp: ${currentDate}</i>`;
 
   return message;
 };
