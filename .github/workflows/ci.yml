@@ -27,10 +27,6 @@ jobs:
         id: save_step
         run: pm2 save
 
-      - name: restart nginx
-        id: nginx_step
-        run: sudo service nginx restart
-
       - name: Notify telegram group on failure integration test
         run: |
           STATUS="success"
@@ -43,10 +39,6 @@ jobs:
           fi
 
           if [ "${{ steps.save_step.outcome }}" != "success" ]; then
-            STATUS="failure"
-          fi
-
-          if [ "${{ steps.nginx_step.outcome }}" != "success" ]; then
             STATUS="failure"
           fi
           node index.js release $STATUS
