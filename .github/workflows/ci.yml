@@ -16,25 +16,37 @@ jobs:
         run: npm install
 
       - name: stop server with pm2
-        id: pm2_step
+        id: stop_step
         run: pm2 stop 0
 
       - name: start server with pm2
-        id: pm2_step
+        id: start_step
         run: pm2 start 0
 
       - name: save server update with pm2
-        id: pm2_step
+        id: save_step
         run: pm2 save
 
       - name: restart nginx
-        id: pm2_step
+        id: nginx_step
         run: sudo service nginx restart
 
       - name: Notify telegram group on failure integration test
         run: |
           STATUS="success"
-          if [ "${{ steps.pm2_step.outcome }}" != "success" ]; then
+          if [ "${{ steps.stop_step.outcome }}" != "success" ]; then
+            STATUS="failure"
+          fi
+
+          if [ "${{ steps.start_step.outcome }}" != "success" ]; then
+            STATUS="failure"
+          fi
+
+          if [ "${{ steps.save_step.outcome }}" != "success" ]; then
+            STATUS="failure"
+          fi
+
+          if [ "${{ steps.nginx_step.outcome }}" != "success" ]; then
             STATUS="failure"
           fi
           node index.js release $STATUS
