@@ -28,8 +28,8 @@ jobs:
 
       - name: Transpile typescript to javascript
         run: |
-          npx tsc --project tsconfig.json --outDir dist
+          npx tsc index.ts
 
       - name: Notify telegram group on failure integration test
         run: |
-          node dist/index.js release ${{ steps.start_step.outcome }}
+          node index.js release ${{ steps.start_step.outcome }}
