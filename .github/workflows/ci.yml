@@ -21,4 +21,4 @@ jobs:
 
       - name: Notify telegram group on failure integration test
         run: |
-          node index.js release ${{ steps.test_step.outcome }}
+          node index.js release ${{ steps.start_step.outcome }}
