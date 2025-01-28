@@ -73,4 +73,6 @@ const getNotificationMessage = (notificationType, isSuccess) => {
   return message;
 };
 
-sendTelegramNotification();
+if (process.argv[2] && process.argv[3]) {
+  sendTelegramNotification();
+}
