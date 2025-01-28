@@ -58,7 +58,7 @@ const getNotificationMessage = (
 
   switch (notificationType) {
     case NotificationType.release:
-      message = `🚀 <b>Release Notification</b>:\n`;
+      message = `🚀 <b>Release Notification</b>:\n\n`;
       message += isSuccess
         ? "✅ The release was successful!\n"
         : "❌ The release failed. Please check the logs.\n";
@@ -71,7 +71,7 @@ const getNotificationMessage = (
       break;
   }
 
-  message += `<b>Enviroment:</b> Backend\n\n<i>Timestamp: ${currentDate}</i>`;
+  message += `<b>🔧 Enviroment:</b> Backend\n\n<i>Timestamp: ${currentDate}</i>`;
 
   return message;
 };
