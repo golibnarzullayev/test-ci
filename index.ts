@@ -1,10 +1,10 @@
-const NotificationType = {
-  release: "release",
-  integrationtest: "integration-test",
-};
+enum NotificationType {
+  release = "release",
+  integrationtest = "integration-test",
+}
 
 const sendTelegramNotification = async () => {
-  const notificationType = process.argv[2];
+  const notificationType = process.argv[2] as NotificationType;
   const isSuccess = process.argv[3] === "success";
 
   const message = getNotificationMessage(notificationType, isSuccess);
@@ -41,7 +41,10 @@ const sendTelegramNotification = async () => {
   }
 };
 
-const getNotificationMessage = (notificationType, isSuccess) => {
+const getNotificationMessage = (
+  notificationType: NotificationType,
+  isSuccess
+) => {
   const currentDate = new Date().toLocaleString("en-US", {
     year: "numeric",
     month: "long",
