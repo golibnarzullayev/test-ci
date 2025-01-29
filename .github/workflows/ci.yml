@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: start server with pm2
-        id: start_step
+        id: start-step
         run: pm2 start 0
 
       - name: Transpile typescript to javascript
@@ -32,4 +32,4 @@ jobs:
 
       - name: Notify telegram group on failure integration test
         run: |
-          node index.js release ${{ steps.start_step.outcome }}
+          node index.js release ${{ steps.start-step.outcome }}
