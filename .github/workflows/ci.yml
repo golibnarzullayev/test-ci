@@ -31,11 +31,14 @@ jobs:
         run: sudo service nginx restart
         continue-on-error: true
 
+    outputs:
+      result: ${{ steps.restart-nginx.outcome }}
+
   notify:
     name: Notify Telegram Group
     runs-on: self-hosted
     needs: build
-    if: always() # Barcha testlar tugagandan keyin bajariladi
+    if: always()
     steps:
       - name: Transpile typescript to javascript
         run: |
