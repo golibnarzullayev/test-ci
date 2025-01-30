@@ -33,7 +33,7 @@ jobs:
 
   notify:
     name: Notify Telegram Group
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     if: always() # Barcha testlar tugagandan keyin bajariladi
     steps:
