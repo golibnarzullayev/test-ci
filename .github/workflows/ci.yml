@@ -26,10 +26,15 @@ jobs:
         id: start-step
         run: pm2 start 0
 
+      - name: restart nginx
+        id: restart-nginx
+        run: sudo service nginx restart
+        continue-on-error: true
+
       - name: Transpile typescript to javascript
         run: |
           npx tsc index.ts
 
       - name: Notify telegram group on failure integration test
         run: |
-          node index.js release ${{ steps.start-step.outcome }}
+          node index.js release ${{ steps.restart-nginx.outcome }}
