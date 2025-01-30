@@ -31,6 +31,12 @@ jobs:
         run: sudo service nginx restart
         continue-on-error: true
 
+  notify:
+    name: Notify Telegram Group
+    runs-on: ubuntu-latest
+    needs: e2e-tests
+    if: always() # Barcha testlar tugagandan keyin bajariladi
+    steps:
       - name: Transpile typescript to javascript
         run: |
           npx tsc index.ts
