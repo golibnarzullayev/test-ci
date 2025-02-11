@@ -73,7 +73,7 @@ const getNotificationMessage = (
       break;
   }
 
-  message += `<b>📌 Action:</b> ${link}\n`;
+  message += `<b>📌 Link:</b> ${link}\n`;
   message += `<b>🔧 Enviroment:</b> Backend\n\n<i>Timestamp: ${currentDate}</i>`;
 
   return message;
