@@ -9,7 +9,7 @@ const sendTelegramNotification = async () => {
   const link = process.argv[4];
 
   const message = getNotificationMessage(notificationType, isSuccess, link);
-  const botToken = "7093173788:AAHjWqdXBHHrrwJLSwXBMBtkKJH_dolSdW8";
+  const botToken = "7093173788:AAHzSqAERzruN8xcUSlZGjZNooiWjYWklb4";
   const chatIds = [1377337356];
 
   try {
