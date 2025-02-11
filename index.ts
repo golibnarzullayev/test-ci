@@ -6,6 +6,7 @@ enum NotificationType {
 const sendTelegramNotification = async () => {
   const notificationType = process.argv[2] as NotificationType;
   const isSuccess = process.argv[3] === "success";
+  const link = process.argv[4];
 
   const message = getNotificationMessage(notificationType, isSuccess);
   const botToken = "7093173788:AAHjWqdXBHHrrwJLSwXBMBtkKJH_dolSdW8";
@@ -43,7 +44,8 @@ const sendTelegramNotification = async () => {
 
 const getNotificationMessage = (
   notificationType: NotificationType,
-  isSuccess
+  isSuccess: boolean
+  link: string
 ) => {
   const currentDate = new Date().toLocaleString("en-US", {
     year: "numeric",
@@ -58,24 +60,21 @@ const getNotificationMessage = (
 
   switch (notificationType) {
     case NotificationType.release:
-      message = `🚀 <b>Release Notification</b>:\n\n`;
+      message = `<b>🚀 New Release Deployed</b>:\n\n`;
       message += isSuccess
         ? "✅ The release was successful!\n"
         : "❌ The release failed. Please check the logs.\n";
       break;
     case NotificationType.integrationtest:
-      message = `<b>🛠️️ Integration Test Notification:\n<b>`;
+      message = `<b>🔍 Integration Test Notification:\n<b>`;
       message += isSuccess
         ? "✅ All integration tests passed successfully!\n"
-        : "❌ Some integration tests failed. Please investigate.\n";
+        : "🚨 Oops! Some integration tests have failed.\n";
       break;
   }
 
+  message += `<b>📌 Action:</b> ${link}\n`;
   message += `<b>🔧 Enviroment:</b> Backend\n\n<i>Timestamp: ${currentDate}</i>`;
 
   return message;
 };
-
-if (process.argv[2] && process.argv[3]) {
-  sendTelegramNotification();
-}
