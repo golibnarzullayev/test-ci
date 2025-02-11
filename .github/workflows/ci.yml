@@ -29,7 +29,6 @@ jobs:
       - name: restart nginx
         id: restart-nginx
         run: sudo service nginx restart
-        continue-on-error: true
 
     outputs:
       result: ${{ steps.restart-nginx.outcome }}
