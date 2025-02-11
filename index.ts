@@ -8,7 +8,7 @@ const sendTelegramNotification = async () => {
   const isSuccess = process.argv[3] === "success";
   const link = process.argv[4];
 
-  const message = getNotificationMessage(notificationType, isSuccess);
+  const message = getNotificationMessage(notificationType, isSuccess, link);
   const botToken = "7093173788:AAHjWqdXBHHrrwJLSwXBMBtkKJH_dolSdW8";
   const chatIds = [1377337356];
 
@@ -44,7 +44,7 @@ const sendTelegramNotification = async () => {
 
 const getNotificationMessage = (
   notificationType: NotificationType,
-  isSuccess: boolean
+  isSuccess: boolean,
   link: string
 ) => {
   const currentDate = new Date().toLocaleString("en-US", {
