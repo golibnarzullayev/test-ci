@@ -14,28 +14,19 @@ const sendTelegramNotification = async () => {
 
   try {
     await Promise.allSettled(
-      chatIds.map(async (chatId) => {
-        const response = await fetch(
-          `https://api.telegram.org/bot${botToken}/sendMessage`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              chat_id: chatId,
-              text: message,
-              parse_mode: "HTML",
-            }),
-          }
-        );
+      chatIds.map(async chatId => {
+        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'HTML' }),
+        });
 
         if (!response.ok) {
-          throw new Error(
-            `Failed to send message to chat ID: ${chatId}, Status: ${response.status}`
-          );
+          throw new Error(`Failed to send message to chat ID: ${chatId}, Status: ${response.status}`);
         }
 
         console.info(`Message sent to chat ID: ${chatId}`);
-      })
+      }),
     );
   } catch (error) {
     console.error("Failed to send some messages.", error);
